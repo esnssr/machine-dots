@@ -1,0 +1,8 @@
+{
+  "name": "Dark ANSI (contrast)",
+  "base": "dark-ansi",
+  "overrides": {
+    "userMessageBackground": "#2f3136",
+    "selectionBg": "#44474d"
+  }
+}

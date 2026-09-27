@@ -1,0 +1,4 @@
+interface:
+  display_name: "Orchestrate Work"
+  short_description: "Coordinate safe, bounded multi-agent work"
+  default_prompt: "Use $orchestrate-work to coordinate this task with clear worker ownership and verification."

@@ -1,0 +1,60 @@
+# --- Theme ---
+# Code colors (ANSI palette) from Xcode Dark
+theme = Xcode Dark
+window-theme = dark
+font-size = 15
+keybind = cmd+enter=unbind
+
+# Xcode Midnight code colors, mapped to the slots Claude Code (dark-ansi) uses
+palette = 1=#ff5a5b
+palette = 2=#4bd156
+palette = 3=#eb905a
+palette = 4=#ec5fbb
+palette = 5=#8b87ff
+palette = 6=#6bdfff
+palette = 9=#ff5a5b
+palette = 10=#08fa95
+palette = 11=#eb905a
+palette = 12=#00b1ff
+palette = 13=#ec5fbb
+palette = 14=#4eb0cc
+
+# Dimmed text (Claude Code draws some types faint); default 0.5 is too dim on this background
+faint-opacity = 0.75
+
+# Keep Monokai Soda's base look
+background = #1a1a1a
+foreground = #c4c5b5
+cursor-color = #f6f7ec
+cursor-text = #b7b8a8
+selection-background = #343434
+selection-foreground = #c4c5b5
+cursor-style = block
+# Cmd + Shift + V: paste an image into Claude Code (sends Ctrl+V). Plain Cmd + V stays normal paste.
+keybind = cmd+shift+v=text:\x16
+
+# --- Text Interaction & Behavior Options ---
+# Automatically copies text immediately when highlighted with the mouse
+copy-on-select = true
+
+# Hides the mouse pointer while typing so it doesn't block your text line visibility
+mouse-hide-while-typing = true
+
+# Sets the text cursor to blink (easier to find your spot in heavy text blocks)
+cursor-style-blink = true
+
+# --- Default Editor ---
+# Use nano for $EDITOR/$VISUAL (git commits, crontab -e, etc.)
+env = EDITOR=nano
+env = VISUAL=nano
+
+# Cmd + Backspace: Delete everything from cursor to the start of the line (sends Ctrl+U)
+keybind = super+backspace=text:\x15
+
+# Cmd + O: Instantly opens Claude Code's native text selection view (Transcript Mode)
+keybind = super+o=text:\x0f
+
+# Cmd + G: Instantly opens the prompt in your external editor (Nano)
+keybind = super+g=text:\x07
+# Cmd + Z: Undo in Claude Code prompt and zsh line editor (sends Ctrl+_)
+keybind = super+z=text:\x1f
