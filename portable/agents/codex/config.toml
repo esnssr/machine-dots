@@ -1,0 +1,80 @@
+# Portable global preferences observed on 2026-09-28.
+
+model = "gpt-6-sol"
+model_reasoning_effort = "medium"
+personality = "pragmatic"
+approval_policy = "on-request"
+approvals_reviewer = "auto_review"
+sandbox_mode = "workspace-write"
+service_tier = "default"
+
+[features]
+multi_agent = true
+goals = true
+memories = true
+js_repl = false
+
+[tui]
+status_line = ["model-with-reasoning", "current-dir", "git-branch", "thread-title", "branch-changes", "approval-mode", "fast-mode"]
+theme = "one-half-light"
+session_picker_view = "comfortable"
+status_line_use_colors = true
+
+[desktop]
+preventSleepWhileRunning = true
+keepRemoteControlAwakeWhilePluggedIn = true
+reviewDelivery = "inline"
+git-show-sidebar-pr-icons = true
+worktree-keep-count = 10
+sansFontSize = 16
+codeFontSize = 14
+selected-avatar-id = "fireball"
+dock-icon-preference = "codex-system"
+followUpQueueMode = "queue"
+mac-menu-bar-enabled = false
+enabled-reasoning-efforts = ["low", "medium", "high", "xhigh"]
+appshotDestination = "last-chat"
+conversationDetailMode = "STEPS_COMMANDS"
+realtimeVoiceScreenContextEnabled = true
+usePointerCursors = true
+appearanceTheme = "system"
+appearanceLightCodeThemeId = "codex"
+appearanceDarkCodeThemeId = "codex"
+appshotSoundEnabled = true
+notifications-turn-mode = "always"
+avatar-overlay-mascot-width-px = 80
+
+[desktop.open-in-target-preferences]
+global = "systemDefault"
+
+[desktop.appearanceLightChromeTheme]
+accent = "#0169cc"
+contrast = 45
+ink = "#0d0d0d"
+opaqueWindows = false
+surface = "#ffffff"
+
+[desktop.appearanceLightChromeTheme.fonts]
+
+[desktop.appearanceLightChromeTheme.semanticColors]
+diffAdded = "#00a240"
+diffRemoved = "#e02e2a"
+skill = "#751ed9"
+
+[desktop.appearanceDarkChromeTheme]
+accent = "#0169cc"
+contrast = 60
+ink = "#fcfcfc"
+opaqueWindows = false
+surface = "#111111"
+
+[desktop.appearanceDarkChromeTheme.fonts]
+
+[desktop.appearanceDarkChromeTheme.semanticColors]
+diffAdded = "#00a240"
+diffRemoved = "#e02e2a"
+skill = "#b06dff"
+
+[memories]
+generate_memories = true
+use_memories = true

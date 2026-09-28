@@ -1,0 +1,36 @@
+# Global command rules are intentionally narrow and read-only by default.
+# Project-specific exceptions should stay explicit and should never broaden
+# write, release, authentication, or destructive access.
+
+# Read-only source-control and GitHub inspection stays frictionless.
+prefix_rule(pattern=["git", "status"], decision="allow")
+prefix_rule(pattern=["git", "diff"], decision="allow")
+prefix_rule(pattern=["git", "log"], decision="allow")
+prefix_rule(pattern=["git", "show"], decision="allow")
+prefix_rule(pattern=["git", "branch", "--show-current"], decision="allow")
+prefix_rule(pattern=["git", "fetch", "origin"], decision="allow")
+prefix_rule(pattern=["git", "ls-remote"], decision="allow")
+prefix_rule(pattern=["gh", "auth", "status"], decision="allow")
+prefix_rule(pattern=["gh", "pr", "view"], decision="allow")
+prefix_rule(pattern=["gh", "pr", "list"], decision="allow")
+prefix_rule(pattern=["gh", "pr", "diff"], decision="allow")
+prefix_rule(pattern=["gh", "pr", "checks"], decision="allow")
+prefix_rule(pattern=["gh", "issue", "view"], decision="allow")
+
+# Read-only App Store Connect discovery and inspection.
+prefix_rule(pattern=["asc", "--help"], decision="allow")
+prefix_rule(pattern=["asc", "apps", ["list", "view"]], decision="allow")
+prefix_rule(pattern=["asc", "versions", ["list", "view", "links"]], decision="allow")
+prefix_rule(pattern=["asc", "builds", ["list", "count", "info", "next-build-number"]], decision="allow")
+prefix_rule(pattern=["asc", "builds", ["uploads", "test-notes", "individual-testers", "icons"], "list"], decision="allow")
+prefix_rule(pattern=["asc", "builds", ["app", "pre-release-version", "beta-app-review-submission", "build-beta-detail", "links"], "view"], decision="allow")
+prefix_rule(pattern=["asc", "testflight", ["groups", "testers", "feedback", "app-localizations", "pre-release"], "list"], decision="allow")
+prefix_rule(pattern=["asc", "testflight", ["crashes", "review", "distribution", "agreements"], ["view", "log"]], decision="allow")
+prefix_rule(pattern=["asc", "review", ["status", "doctor", "history", "details-get", "details-for-version", "attachments-list", "attachments-get", "submissions-list", "submissions-get", "submissions-items-ids", "items-get", "items-list"]], decision="allow")
+
+# Read-only discovery and harmless local inspection.
+prefix_rule(pattern=["npm", "view"], decision="allow")
+
+# GitHub Actions cache cleanup (user-approved write exception, 2026-09-27).
+prefix_rule(pattern=["gh", "cache", "list"], decision="allow")
+prefix_rule(pattern=["gh", "cache", "delete"], decision="allow")

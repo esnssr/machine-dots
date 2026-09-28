@@ -11,6 +11,12 @@ Observed: 2026-09-27 22:41 CEST. This is a snapshot, not a live view. Names show
 - Codex theme: built-in `one-half-light`; the selection is in `portable/agents/codex/appearance.toml`. The full Codex config is not copied.
 - Reusable orchestration: `portable/agents/skills/orchestrate-work/`, Claude agent roles, and the Command Center and `.progress` guides/templates.
 
+## Global agent preferences
+
+Observed: 2026-09-28, independently of the earlier full inventory. Portable settings and both status line configurations are backed up under `portable/agents/claude/` and `portable/agents/codex/`. Claude's status line script and Codex's global command rules are also backed up. See [the scope and exclusions](../docs/GLOBAL-SETTINGS.md).
+
+Claude's current plugin selections include Linear, Notion, crit, and Swift LSP. The status line requires `jq` and Git. These additions do not refresh the older full tools and plugin inventory below.
+
 ## Raycast scripts
 
 Observed: 2026-09-28, independently of the earlier full inventory. Source folder: `~/RaycastScripts`. Both scripts are backed up with executable permissions in `portable/raycast/`.

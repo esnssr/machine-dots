@@ -15,9 +15,12 @@ Keep repo-specific instructions and live `.progress` project records out of this
 ```sh
 for file in portable/terminal/zsh/.zshrc portable/terminal/zsh/.zprofile portable/terminal/zsh/.p10k.zsh; do zsh -n "$file" || exit; done
 for file in portable/raycast/*.sh; do bash -n "$file" || exit; done
+bash -n portable/agents/claude/statusline-command.sh
 python3 -m json.tool portable/agents/claude/themes/dark-ansi-contrast.json >/dev/null
 python3 -m json.tool portable/agents/claude/theme-selection.json >/dev/null
+python3 -m json.tool portable/agents/claude/settings.json >/dev/null
+python3 -m json.tool portable/agents/claude/permissions.json >/dev/null
 git diff --cached --check
 ```
 
-Review the Codex TOML snippet and changed-file list before publishing.
+Review the Codex TOML settings and changed-file list before publishing. Validate portable Codex values with the installed client's strict configuration check or a TOML parser. Smoke-test Claude's status line with synthetic input rather than reading a live session transcript.

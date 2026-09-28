@@ -14,6 +14,7 @@ A portable backup and catalog of Eslam's personal laptop setup. Use it to restor
 - Portable Zsh, Powerlevel10k, and Ghostty configuration under `portable/terminal/`.
 - Raycast's Screenshot and Paste to Ghostty and Quote Selection in Ghostty script commands under `portable/raycast/`.
 - Global `AGENTS.md` and `CLAUDE.md`, Codex and Claude theme selections, Claude's custom theme and agent roles, and the reusable `orchestrate-work` skill under `portable/agents/`.
+- Selected [global Codex and Claude settings](docs/GLOBAL-SETTINGS.md), including both status lines, desktop preferences, and optional permission rules.
 - A general [Command Center template](templates/command-center.md) and [`.progress` workflow](docs/PROGRESS.md) with templates. These describe how to work; live project records are not copied.
 - An inventory of installed MCPs, skills, and tools. This is a discovery list, not a request to install every item.
 

@@ -1,0 +1,32 @@
+{
+  "model": "opus",
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "linear@claude-plugins-official": true,
+    "notion@claude-plugins-official": true,
+    "crit@crit": true,
+    "swift-lsp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "crit": {
+      "source": {
+        "source": "github",
+        "repo": "tomasz-tomczyk/crit"
+      }
+    }
+  },
+  "syntaxHighlightingDisabled": false,
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "high"
+    },
+    "claude-opus-5-5": {
+      "effortLevel": "low"
+    }
+  },
+  "theme": "custom:dark-ansi-contrast",
+  "editorMode": "normal"
+}

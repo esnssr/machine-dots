@@ -12,6 +12,8 @@ The Zsh configuration expects Homebrew, Antigen, Powerlevel10k, NVM, and `wut` t
 
 Codex currently uses the built-in theme `one-half-light`; its selected setting is in `portable/agents/codex/appearance.toml`. Claude selects `custom:dark-ansi-contrast`; its selection and custom theme are in `portable/agents/claude/`. These files are snippets to review, not replacements for the entire application settings. Ghostty's theme colors are in its backed-up config.
 
+For both status lines and broader preferences, use [the global settings guide](GLOBAL-SETTINGS.md). Merge selected settings into the destination's user files. Copy Claude's status line script to its referenced location, and review the optional permission files separately. Plugin selections require the corresponding plugins to be installed on the destination laptop.
+
 ## Raycast script commands
 
 The two executable scripts in `portable/raycast/` were backed up from `~/RaycastScripts` on the personal laptop. Add your chosen script folder to Raycast's Script Commands directories. They use macOS utilities and Ghostty's scripting API; review any permissions macOS requests on the new laptop.

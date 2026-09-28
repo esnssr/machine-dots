@@ -4,7 +4,7 @@ This repository reflects the personal laptop only after its changes have been re
 
 When the personal setup changes:
 
-1. Compare the live Zsh, Ghostty, Raycast scripts, global agent instructions, themes, and authored orchestration files with `portable/`. Review differences and copy only portable changes. Keep repo-specific additions out unless deliberately generalized.
+1. Compare the live Zsh, Ghostty, Raycast scripts, global agent instructions, portable settings, status line scripts, command rules, themes, and authored orchestration files with `portable/`. Review differences and copy only portable changes. Use `docs/GLOBAL-SETTINGS.md` to preserve the settings exclusions. Keep repo-specific additions out unless deliberately generalized.
 2. Refresh `inventory/personal.md` from the names of installed MCPs, user-managed skills, agent roles, and tools. Update its observation date. Keep connection details and credentials out.
 3. Review the repository diff for private data and machine-specific paths. Commit and publish the reviewed change through the normal authorized Git workflow.
 
