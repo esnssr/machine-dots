@@ -11,3 +11,14 @@ This is a curated setup backup. Choose which parts to use; installing everything
 The Zsh configuration expects Homebrew, Antigen, Powerlevel10k, NVM, and `wut` to be available for the parts that use them. It is a backup of the personal laptop's current configuration; review paths and optional tools before using it on a different machine. The project-specific `run-bet` alias was removed from the portable copy.
 
 Codex currently uses the built-in theme `one-half-light`; its selected setting is in `portable/agents/codex/appearance.toml`. Claude selects `custom:dark-ansi-contrast`; its selection and custom theme are in `portable/agents/claude/`. These files are snippets to review, not replacements for the entire application settings. Ghostty's theme colors are in its backed-up config.
+
+## Raycast script commands
+
+The two executable scripts in `portable/raycast/` were backed up from `~/RaycastScripts` on the personal laptop. Add your chosen script folder to Raycast's Script Commands directories. They use macOS utilities and Ghostty's scripting API; review any permissions macOS requests on the new laptop.
+
+- `screenshot-paste-to-ghostty.sh` takes an interactive screenshot into the clipboard, activates Ghostty, and sends Control+V to its focused terminal.
+- `quote-selection-in-ghostty.sh` inserts selected text into the focused Ghostty terminal as a quote. It detects the current prompt using Claude Code and Codex prompt markers; changes to their UI may affect that detection.
+
+The scripts are unchanged backups. The quote script also accepts clipboard text when Ghostty's copy action produces no new selection, to support selections owned by Claude Code or Codex. If there is no active selection, it can therefore quote stale clipboard text. Use it with an intended selection and review the inserted text before submitting the prompt.
+
+Verify them manually in a suitable terminal after restore. They modify clipboard or terminal input, so syntax checks alone do not establish runtime behavior.

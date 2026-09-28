@@ -13,7 +13,8 @@ Keep repo-specific instructions and live `.progress` project records out of this
 ## Verification
 
 ```sh
-zsh -n portable/terminal/zsh/.zshrc portable/terminal/zsh/.zprofile portable/terminal/zsh/.p10k.zsh
+for file in portable/terminal/zsh/.zshrc portable/terminal/zsh/.zprofile portable/terminal/zsh/.p10k.zsh; do zsh -n "$file" || exit; done
+for file in portable/raycast/*.sh; do bash -n "$file" || exit; done
 python3 -m json.tool portable/agents/claude/themes/dark-ansi-contrast.json >/dev/null
 python3 -m json.tool portable/agents/claude/theme-selection.json >/dev/null
 git diff --cached --check

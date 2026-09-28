@@ -11,6 +11,13 @@ Observed: 2026-09-27 22:41 CEST. This is a snapshot, not a live view. Names show
 - Codex theme: built-in `one-half-light`; the selection is in `portable/agents/codex/appearance.toml`. The full Codex config is not copied.
 - Reusable orchestration: `portable/agents/skills/orchestrate-work/`, Claude agent roles, and the Command Center and `.progress` guides/templates.
 
+## Raycast scripts
+
+Observed: 2026-09-28, independently of the earlier full inventory. Source folder: `~/RaycastScripts`. Both scripts are backed up with executable permissions in `portable/raycast/`.
+
+- `screenshot-paste-to-ghostty.sh` — Screenshot and Paste to Ghostty.
+- `quote-selection-in-ghostty.sh` — Quote Selection in Ghostty.
+
 ## MCP names
 
 Names only; no connection settings or credentials are stored here.
