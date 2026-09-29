@@ -66,19 +66,71 @@ if git --no-optional-locks -C "$dir" rev-parse --is-inside-work-tree >/dev/null 
 fi
 
 # --- running subagents ---
+# Each agent is shown as type(model·effort). Model and effort come from the
+# agent's own log (what it actually ran on). Before its first reply, fall back
+# to its definition in ~/.claude/agents and mark the values with "?".
+short_model() {
+  case "$1" in
+    *opus*) echo opus ;; *sonnet*) echo sonnet ;; *haiku*) echo haiku ;;
+    *fable*) echo fable ;; "" ) echo "" ;; *) echo "${1#claude-}" ;;
+  esac
+}
+short_effort() {
+  case "$1" in medium) echo med ;; *) echo "$1" ;; esac
+}
+agent_label() {
+  local id="$1" dir="$2" type model effort mark="" line def
+  type=$(jq -r '.name // .agentType // "agent"' "$dir/agent-$id.meta.json" 2>/dev/null)
+  [ -z "$type" ] && type="agent"
+  line=$(tail -c 300000 "$dir/agent-$id.jsonl" 2>/dev/null | grep '"type":"assistant"' | tail -1)
+  if [ -n "$line" ]; then
+    IFS=$'\037' read -r model effort < <(printf '%s' "$line" \
+      | jq -r '[(.message.model // ""), (.effort // .message.effort // .effortLevel // "")] | join("\u001f")' 2>/dev/null)
+  fi
+  if [ -z "$model" ]; then
+    def="$HOME/.claude/agents/$type.md"
+    if [ -f "$def" ]; then
+      model=$(sed -n 's/^model:[[:space:]]*//p' "$def" | head -1)
+      effort=$(sed -n 's/^effort:[[:space:]]*//p' "$def" | head -1)
+    fi
+    [ -z "$model" ] && model="inherit"
+    mark="?"
+  fi
+  model=$(short_model "$model"); effort=$(short_effort "$effort")
+  local inner="$model"
+  [ -n "$effort" ] && inner+="·$effort"
+  printf '%s' "${C_AGENT}${type}${C_DIM}(${inner}${mark})${C_RESET}"
+}
+
 # Background agents get their tool_result at launch, so "tool_use without
 # tool_result" can't detect them. Instead: agents launched, minus agents that
 # have since produced a completed task-notification.
 seg_agents=""
 if [ -n "$transcript" ] && [ -f "$transcript" ]; then
   buf=$(tail -c 4000000 "$transcript" 2>/dev/null)
-  launched=$(printf '%s' "$buf" | grep -o 'agentId: [A-Za-z0-9_-]\{1,\}' | sed 's/agentId: //' | sort -u)
+  launched=$(printf '%s' "$buf" | grep -o 'agentId: [A-Za-z0-9_-]\{1,\} (internal ID' | sed 's/agentId: //; s/ (internal ID//' | sort -u)
   if [ -n "$launched" ]; then
-    done_ids=$(printf '%s' "$buf" | grep '<status>completed</status>' \
+    done_ids=$(printf '%s' "$buf" | grep -E '<status>(completed|failed|killed|stopped|cancelled)</status>' \
       | grep -o '<task-id>[^<]\{1,\}</task-id>' | sed 's/<[^>]*>//g' | sort -u)
-    running=$(comm -23 <(printf '%s\n' "$launched") <(printf '%s\n' "$done_ids") | grep -c .)
-    [ "$running" -gt 0 ] && seg_agents="${C_AGENT}@${running}${C_RESET}"
+    running_ids=$(comm -23 <(printf '%s\n' "$launched") <(printf '%s\n' "$done_ids") | grep .)
+    running=$(printf '%s' "$running_ids" | grep -c .)
+    if [ "$running" -gt 0 ]; then
+      seg_agents="${C_AGENT}@${running}${C_RESET}"
+      sub_dir="${transcript%.jsonl}/subagents"
+      for id in $running_ids; do
+        seg_agents+=" $(agent_label "$id" "$sub_dir")"
+      done
+    fi
   fi
+fi
+
+# --- save latest usage so agents can read it (~/.claude/usage-latest.json) ---
+if [ -n "$five_hour$seven_day" ]; then
+  usage_tmp=$(mktemp "$HOME/.claude/.usage.XXXXXX" 2>/dev/null) && {
+    printf '%s' "$input" | jq -c --arg at "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+      '{updated_at: $at, session_id, rate_limits}' > "$usage_tmp" 2>/dev/null \
+      && mv "$usage_tmp" "$HOME/.claude/usage-latest.json" || rm -f "$usage_tmp"
+  }
 fi
 
 # --- rate limits (5h session, 7d weekly) ---

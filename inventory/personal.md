@@ -17,6 +17,8 @@ Observed: 2026-09-28, independently of the earlier full inventory. Portable sett
 
 Claude's current plugin selections include Linear, Notion, crit, and Swift LSP. The status line requires `jq` and Git. These additions do not refresh the older full tools and plugin inventory below.
 
+Status line script refreshed: 2026-09-29. The backup includes each running agent's type/model/effort, additional terminal-status detection, and writing the latest usage snapshot for agents to read. Only the script was refreshed; the remaining settings and inventory retain their observation dates. Runtime usage snapshots are excluded.
+
 ## Raycast scripts
 
 Observed: 2026-09-28, independently of the earlier full inventory. Source folder: `~/RaycastScripts`. Both scripts are backed up with executable permissions in `portable/raycast/`.
